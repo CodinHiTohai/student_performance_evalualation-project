@@ -1,19 +1,21 @@
-
 from flask import Flask, render_template, request
 import pandas as pd
 import joblib
 
 app = Flask(__name__)
 
+# Load trained model and preprocessing pipeline
 model = joblib.load("model.pkl")
 pipeline = joblib.load("pipeline.pkl")
 
 
 @app.route("/", methods=["GET", "POST"])
 def home():
+
     prediction = None
 
     if request.method == "POST":
+
         data = {
             "student_id": [int(request.form["student_id"])],
             "gender": [request.form["gender"]],
