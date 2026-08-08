@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request
 import pandas as pd
 import joblib
@@ -10,11 +11,9 @@ pipeline = joblib.load("pipeline.pkl")
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-
     prediction = None
 
     if request.method == "POST":
-
         data = {
             "student_id": [int(request.form["student_id"])],
             "gender": [request.form["gender"]],
